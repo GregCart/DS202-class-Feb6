@@ -379,6 +379,35 @@ EuclideanNorm(c(1 : 5))</code></pre>
 <pre class="r"><code>EuclideanNorm(-10)</code></pre>
 <pre><code>## [1] 10</code></pre>
 </div>
+<div id="question-2" class="section level2">
+<h2>Question 2</h2>
+<p>Write a loop function to calculate the Euclidean norm of a vector</p>
+<pre class="r"><code>x = c(3 : 16)
+
+EuclideanNorm(x)</code></pre>
+<pre><code>## [1] 38.61347</code></pre>
+<pre class="r"><code>d = 0
+for (i in 1 : length(x)){
+  d = d + x[i]^2
+  cat(&quot;Iteration = &quot;, i, &quot;, value of x =&quot;, x[i], &quot;value of d = &quot;, d, &quot;\n&quot;)
+}</code></pre>
+<pre><code>## Iteration =  1 , value of x = 3 value of d =  9 
+## Iteration =  2 , value of x = 4 value of d =  25 
+## Iteration =  3 , value of x = 5 value of d =  50 
+## Iteration =  4 , value of x = 6 value of d =  86 
+## Iteration =  5 , value of x = 7 value of d =  135 
+## Iteration =  6 , value of x = 8 value of d =  199 
+## Iteration =  7 , value of x = 9 value of d =  280 
+## Iteration =  8 , value of x = 10 value of d =  380 
+## Iteration =  9 , value of x = 11 value of d =  501 
+## Iteration =  10 , value of x = 12 value of d =  645 
+## Iteration =  11 , value of x = 13 value of d =  814 
+## Iteration =  12 , value of x = 14 value of d =  1010 
+## Iteration =  13 , value of x = 15 value of d =  1235 
+## Iteration =  14 , value of x = 16 value of d =  1491</code></pre>
+<pre class="r"><code>sqrt(d)</code></pre>
+<pre><code>## [1] 38.61347</code></pre>
+</div>
 
 
 

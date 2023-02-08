@@ -25,5 +25,21 @@ EuclideanNorm(c(1 : 5))
 EuclideanNorm(-10)
 ```
 
+## Question 2
 
+Write a loop function to calculate the Euclidean norm of a vector
+
+```{r}
+x = c(3 : 16)
+
+EuclideanNorm(x)
+
+d = 0
+for (i in 1 : length(x)){
+  d = d + x[i]^2
+  cat("Iteration = ", i, ", value of x =", x[i], "value of d = ", d, "\n")
+}
+sqrt(d)
+
+```
 
