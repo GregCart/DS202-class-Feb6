@@ -26,4 +26,127 @@ EuclideanNorm(-10)
 ```
 
 
+## Question 2
+
+Write a loop function to calculate the euclidean norm of a function
+
+```{r}
+x = c(3:16)
+
+EuclideanNorm(x)
+
+d = 0
+for (i in 1:length(x)) {
+  d = d + x[i]^2
+  cat("Iteration: ", i, ", x = ", x[i], "d = ", d)
+}
+sqrt(d)
+```
+
+
+## Question 3
+
+Use loop to write he function for Euclidean Norm
+
+
+```{r}
+EuclideanNormLoop = function(x) {
+  d = 0
+  for (i in 1 : length(x)) {
+    d = d + x[i]^2
+  }
+  
+  return(sqrt(d))
+}
+
+EuclideanNormLoop(c(-10:10))
+```
+
+Write a function for finding variance of data
+
+```{r}
+Var = function(x) {
+  d = 0
+  v = sum(x)
+  for (i in 1:length(x)) {
+    d = d + (x[i] - v)^2
+  }
+  ret = 1/(length(x) - 1) * d
+  return(ret)
+}
+
+Var(c(-10:10))
+
+#R built-in
+var(c(-10:10))
+```
+
+## Question 4
+
+Write a function to calculate the smapel variances of a vector $x$
+
+```{r}
+MyVar = function(x) {
+  n = length(x)
+  xbar = sum(x) / n
+  x.centered = x - xbar
+  res = sum(x.centered^2) / (n - 1)
+  return(res)
+}
+
+MyVar(c(-5:20))
+
+var(c(-5:20))
+```
+
+## Question 5 (simulation example)
+
+Suppose we have data from a Normal distribution with mean $\mu = 5$ and variance
+$\sigma^2 = 1$. We Want to estimate $\thea = \mu^2$ (true value is 25)
+
+Suppose $X_1, \ldots, X_n$ are the data. Wh have two estimators 
+
+We have 2 estimators
+
+1. $\hat{\theta}_1 = \bar{X}^2$ where $\bar{X} = \sum_{i = 1}^{n} X_i$
+
+2. $\hat{\theta}_2 = \frac{1}{n(n-1)}\sum_{i \neq j} X_i X_j = \frac{1}{n(n-1)} \bigg\{ \bigg(\sum_{i=1}^{n} X_i \bigg)^2 - \sum{i = 1}^{n} X_i}$
+
+```{r}
+theta1 = function(x) {
+  res = mean(x)^2
+  return(res)
+}
+
+theta2 = function(x) {
+    n = length(x)
+    res = (sum(x)^2 - sum(x^2)) / (n * (n - 1))
+    return(res)
+}
+
+# Simulaiton:
+# SUppose the smaple size if 20 (n = 20)
+# Simulation from normal distribution with mean 5 and variance 1
+# SImulate 1000 times
+
+diff1 = c()
+diff2 = c()
+
+for (rep in 1 : 1000) {
+  z = rnorm(20, 5, 1)
+
+  diff1[rep] = theta1(z) - 25
+  diff2[rep] = theta2(z) - 25
+}
+
+
+hist(diff1)
+hist(diff2)
+
+MSE1 = sqrt(mean(diff1^2))
+MSE2 = sqrt(mean(diff2^2))
+
+MSE1
+MSE2
+```
 
